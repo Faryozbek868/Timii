@@ -1,0 +1,192 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Aloqa - Timii{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/10"></div>
+    <div class="container mx-auto px-4 relative">
+        <div class="text-center max-w-4xl mx-auto">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-6">Biz Bilan Bog'laning</h1>
+            <p class="text-xl opacity-90">Savollaringiz bormi? Biz sizga yordam berishga tayyormiz!</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form and Info -->
+<section class="py-16">
+    <div class="container mx-auto px-4">
+        <div class="grid lg:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 flex items-center gap-2 mb-4">
+                        <i class="fas fa-envelope text-blue-600"></i>
+                        Xabar Yuborish
+                    </h2>
+                    <p class="text-gray-600">
+                        Formani to'ldiring va biz tez orada siz bilan bog'lanamiz
+                    </p>
+                </div>
+                <form method="post" class="space-y-6">
+                    {% csrf_token %}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-gray-700">Ism</label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors" placeholder="Ismingizni kiriting">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-gray-700">Familiya</label>
+                            <input type="text" name="surname" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors" placeholder="Familiyangizni kiriting">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" name="email" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors" placeholder="email@example.com">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-700">Telefon</label>
+                        <input type="tel" name="phone" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors" placeholder="+998 90 123 45 67">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-700">Mavzu</label>
+                        <input type="text" name="subject" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors" placeholder="Xabar mavzusi">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-700">Xabar</label>
+                        <textarea name="message" rows="5" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors resize-vertical" placeholder="Xabaringizni yozing..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fas fa-paper-plane"></i>
+                        Xabar Yuborish
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="space-y-8">
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl shadow-xl p-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Aloqa Ma'lumotlari</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Telefon</h3>
+                                <p class="text-gray-600">+998 90 123 45 67</p>
+                                <p class="text-gray-600">+998 71 234 56 78</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Email</h3>
+                                <p class="text-gray-600">Timii@center.com</p>
+                                <p class="text-gray-600">support@center.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Manzil</h3>
+                                <p class="text-gray-600">Qashqadaryo, G'uzor tumani</p>
+                                <p class="text-gray-600">Obod ko'chasi 12-uy</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-clock text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Ish Vaqti</h3>
+                                <p class="text-gray-600">Dushanba - Juma: 09:00 - 21:00</p>
+                                <p class="text-gray-600">Shanba: 09:00 - 18:00</p>
+                                <p class="text-gray-600">Yakshanba: Dam olish kuni</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl shadow-xl p-6">
+                    <div class="grid grid-cols-2 gap-6 text-center">
+                        <div>
+                            <div class="flex items-center justify-center mb-2">
+                                <i class="fas fa-users text-2xl"></i>
+                            </div>
+                            <div class="text-2xl font-bold">1500+</div>
+                            <div class="text-sm opacity-90">Mamnun O'quvchilar</div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-center mb-2">
+                                <i class="fas fa-award text-2xl"></i>
+                            </div>
+                            <div class="text-2xl font-bold">98%</div>
+                            <div class="text-sm opacity-90">Muvaffaqiyat Darajasi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Tez-tez So'raladigan Savollar
+                </span>
+            </h2>
+            <p class="text-xl text-gray-600">Eng ko'p so'raladigan savollar va javoblar</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Kursga qanday yozilish mumkin?</h3>
+                <p class="text-gray-600 leading-relaxed">Kursga yozilish uchun bizning saytimizdan online ro'yxatdan o'tishingiz yoki to'g'ridan-to'g'ri filiallarimizga tashrif buyurishingiz mumkin.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">To'lov usullari qanday?</h3>
+                <p class="text-gray-600 leading-relaxed">Biz naqd pul, plastik karta va bank o'tkazmasi orqali to'lovlarni qabul qilamiz. Shuningdek, bo'lib to'lash imkoniyati ham mavjud.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Kurs davomiyligi qancha?</h3>
+                <p class="text-gray-600 leading-relaxed">Kurs davomiyligi tanlangan yo'nalishga qarab 2 oydan 6 oygacha o'zgaradi. Har bir kurs uchun aniq ma'lumot kurs sahifasida ko'rsatilgan.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Sertifikat beriladimi?</h3>
+                <p class="text-gray-600 leading-relaxed">Ha, kursni muvaffaqiyatli tugatgan barcha o'quvchilarga rasmiy sertifikat beriladi.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Hali Ham Savollaringiz Bormi?</h2>
+        <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Bizning mutaxassislarimiz sizning barcha savollaringizga javob berishga tayyor
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button class="px-8 py-4 text-lg bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                Qo'ng'iroq Qilish
+            </button>
+            <button class="px-8 py-4 text-lg border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                Online Chat
+            </button>
+        </div>
+    </div>
+</section>
+{% endblock %}

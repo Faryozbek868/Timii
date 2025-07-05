@@ -1,0 +1,170 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Kurslar - Timii{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/10"></div>
+    <div class="container mx-auto px-4 relative">
+        <div class="text-center max-w-4xl mx-auto">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-6">Bizning Kurslarimiz</h1>
+            <p class="text-xl opacity-90">
+                Professional o'qituvchilar bilan zamonaviy kurslarni tanlang va o'z kelajagingizni quring
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Filters -->
+<section class="py-8 bg-white border-b">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-wrap gap-2 justify-center">
+            <button class="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold">
+                Barchasi
+            </button>
+            {% for category in categories %}
+            <button class="px-6 py-2 border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+                {{ category }}
+            </button>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Courses -->
+{% if featured_courses %}
+<section class="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    <i class="fas fa-fire mr-2"></i>Mashhur Kurslar
+                </span>
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for course in featured_courses %}
+            <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border-0">
+                <div class="relative overflow-hidden">
+                    {% if course.image %}
+                        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                    {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-blue-200 to-purple-200 flex items-center justify-center">
+                            <i class="fas fa-book text-4xl text-blue-600"></i>
+                        </div>
+                    {% endif %}
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">{{ course.category }}</span>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full px-3 py-1 text-sm font-semibold">
+                        {{ course.price }} so'm
+                    </div>
+                    <div class="absolute bottom-4 left-4 bg-black/70 text-white rounded-full px-3 py-1 text-sm">
+                        {{ course.get_level_display }}
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">{{ course.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ course.description|truncatewords:15 }}</p>
+                    <div class="flex items-center justify-between text-sm text-gray-600 mb-4">
+                        <div class="flex items-center gap-1">
+                            <i class="fas fa-clock"></i>
+                            {{ course.duration }}
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <i class="fas fa-users"></i>
+                            {{ course.students_count }} o'quvchi
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            {{ course.rating }}
+                        </div>
+                    </div>
+                    <div class="text-sm text-gray-600 mb-4">
+                        <span class="font-semibold">O'qituvchi:</span> {{ course.instructor }}
+                    </div>
+                    {% if course.get_features_list %}
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-gray-700 mb-2">Kurs tarkibi:</div>
+                        <div class="flex flex-wrap gap-1">
+                            {% for feature in course.get_features_list %}
+                            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">{{ feature }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="flex gap-2">
+                        <button class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+                            Yozilish
+                        </button>
+                        <button class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                            Batafsil
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- All Courses -->
+<section class="py-16">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Barcha Kurslar
+                </span>
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for course in courses %}
+            <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border-0">
+                <div class="relative overflow-hidden">
+                    {% if course.image %}
+                        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                    {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-blue-200 to-purple-200 flex items-center justify-center">
+                            <i class="fas fa-book text-4xl text-blue-600"></i>
+                        </div>
+                    {% endif %}
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">{{ course.category }}</span>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full px-3 py-1 text-sm font-semibold">
+                        {{ course.price }} so'm
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">{{ course.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ course.description|truncatewords:15 }}</p>
+                    <div class="flex items-center justify-between text-sm text-gray-600 mb-4">
+                        <span><strong>Daraja:</strong> {{ course.get_level_display }}</span>
+                        <span><strong>Davomiyligi:</strong> {{ course.duration }}</span>
+                    </div>
+                    <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+                        Kursga Yozilish
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">O'zingizga Mos Kursni Topa Olmadingizmi?</h2>
+        <p class="text-xl mb-8 opacity-90">
+            Bizning maslahatchilarimiz sizga eng mos kursni tanlashda yordam berishadi
+        </p>
+        <button class="px-8 py-4 text-lg bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            Bepul Konsultatsiya
+        </button>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,217 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Manzillar - Timii{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/10"></div>
+    <div class="container mx-auto px-4 relative">
+        <div class="text-center max-w-4xl mx-auto">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-6">Bizning Manzillar</h1>
+            <p class="text-xl opacity-90">
+                Toshkent shahrining turli joylarida joylashgan filiallarimiz bilan tanishing
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 rounded-3xl p-8 text-center">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Interaktiv Xarita</h2>
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <div class="h-96 bg-gradient-to-br from-blue-200 to-purple-200 rounded-xl flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-map-marker-alt text-6xl text-blue-600 mb-4"></i>
+                        <p class="text-lg text-gray-600">Barcha filiallarimizning joylashuvini ko'rish uchun xarita</p>
+                        <button class="mt-4 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+                            Xaritani Ochish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Location -->
+{% if main_location %}
+<section class="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    <i class="fas fa-building mr-2"></i>Bosh Filial
+                </span>
+            </h2>
+        </div>
+        <div class="flex justify-center">
+            <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border-0 max-w-2xl">
+                {% if main_location.image %}
+                    <img src="{{ main_location.image.url }}" alt="{{ main_location.name }}" class="w-full h-64 object-cover">
+                {% else %}
+                    <div class="w-full h-64 bg-gradient-to-br from-blue-200 to-purple-200 flex items-center justify-center">
+                        <i class="fas fa-building text-6xl text-blue-600"></i>
+                    </div>
+                {% endif %}
+                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
+                    <i class="fas fa-users text-blue-600"></i>
+                    <span class="text-sm font-semibold">{{ main_location.capacity }} joy</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        {{ main_location.name }}
+                    </h3>
+                    <p class="text-gray-600 mb-4">{{ main_location.address }}</p>
+                    <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <i class="fas fa-phone text-blue-600"></i>
+                                {{ main_location.phone }}
+                            </div>
+                            {% if main_location.email %}
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <i class="fas fa-envelope text-green-600"></i>
+                                {{ main_location.email }}
+                            </div>
+                            {% endif %}
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <i class="fas fa-clock text-green-600"></i>
+                                {{ main_location.working_hours }}
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <i class="fas fa-users text-blue-600"></i>
+                                Sig'im: {{ main_location.capacity }} o'quvchi
+                            </div>
+                        </div>
+                    </div>
+                    {% if main_location.get_features_list %}
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-gray-700 mb-2">Imkoniyatlar:</div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            {% for feature in main_location.get_features_list %}
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-500"></i>
+                                {{ feature }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- All Locations -->
+<section class="py-16">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Barcha Filiallar
+                </span>
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            {% for location in locations %}
+            <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border-0">
+                <div class="relative overflow-hidden">
+                    {% if location.image %}
+                        <img src="{{ location.image.url }}" alt="{{ location.name }}" class="w-full h-48 object-cover">
+                    {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-blue-200 to-purple-200 flex items-center justify-center">
+                            <i class="fas fa-building text-4xl text-blue-600"></i>
+                        </div>
+                    {% endif %}
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
+                        <i class="fas fa-users text-blue-600"></i>
+                        <span class="text-sm font-semibold">{{ location.capacity }} joy</span>
+                    </div>
+                    {% if location.is_main %}
+                    <div class="absolute top-4 left-4 bg-yellow-400 text-white rounded-full px-3 py-1 text-sm font-semibold">
+                        <i class="fas fa-crown mr-1"></i>Bosh filial
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
+                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                        {{ location.name }}
+                    </h3>
+                    <p class="text-gray-600 mb-4">{{ location.address }}</p>
+                    <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                        <div class="grid grid-cols-1 gap-2">
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <i class="fas fa-phone text-blue-600"></i>
+                                {{ location.phone }}
+                            </div>
+                            {% if location.email %}
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <i class="fas fa-envelope text-green-600"></i>
+                                {{ location.email }}
+                            </div>
+                            {% endif %}
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <i class="fas fa-clock text-green-600"></i>
+                                {{ location.working_hours }}
+                            </div>
+                        </div>
+                    </div>
+                    {% if location.get_courses_list %}
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-gray-700 mb-2">Mavjud kurslar:</div>
+                        <div class="flex flex-wrap gap-1">
+                            {% for course in location.get_courses_list %}
+                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs font-medium">{{ course }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if location.get_transport_list %}
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-gray-700 mb-2">Transport:</div>
+                        <div class="space-y-1">
+                            {% for transport in location.get_transport_list %}
+                            <div class="flex items-center gap-2 text-xs text-gray-600">
+                                <i class="fas fa-bus text-blue-500"></i>
+                                {{ transport }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="flex gap-2">
+                        <button class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+                            Yo'l Tarifi
+                        </button>
+                        <button class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                            Qo'ng'iroq
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Yangi Filial Ochilishi Rejalashtirilmoqda!</h2>
+        <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Tez orada Toshkent shahrining boshqa hududlarida ham yangi filiallarimiz ochiladi. Yangiliklar haqida
+            birinchi bo'lib xabar olish uchun obuna bo'ling.
+        </p>
+        <button class="px-8 py-4 text-lg bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            Yangiliklar Uchun Obuna
+        </button>
+    </div>
+</section>
+{% endblock %}

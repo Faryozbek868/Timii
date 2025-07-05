@@ -1,0 +1,197 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Bosh sahifa - Timii{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+    <div class="container mx-auto px-4 relative">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div class="space-y-4">
+                    <h1 class="text-5xl lg:text-6xl font-bold leading-tight">
+                        <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            Kelajagingizni
+                        </span>
+                        <br>
+                        <span class="text-gray-800">Bugun Boshlang!</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        Zamonaviy ta'lim usullari va professional o'qituvchilar bilan bilimingizni oshiring. Bizning
+                        kurslarimiz orqali yangi ko'nikmalar egallang va muvaffaqiyatga erishing.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="{% url 'main:courses' %}" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 group">
+                        Kurslarni Ko'rish
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <button class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-colors group">
+                        <i class="fas fa-play mr-2 group-hover:scale-110 transition-transform"></i>
+                        Video Ko'rish
+                    </button>
+                </div>
+                <div class="flex items-center space-x-8 pt-4">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600">
+                            {% if stats %}{{ stats.students_count }}+{% else %}500+{% endif %}
+                        </div>
+                        <div class="text-gray-600">O'quvchilar</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-600">
+                            {% if stats %}{{ stats.courses_count }}+{% else %}50+{% endif %}
+                        </div>
+                        <div class="text-gray-600">Kurslar</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600">98%</div>
+                        <div class="text-gray-600">Mamnunlik</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="relative transform hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-3xl blur-3xl opacity-30 animate-pulse"></div>
+                    <div class="relative bg-white rounded-3xl p-8 shadow-2xl border border-blue-100">
+                        <img src="https://via.placeholder.com/500x400" alt="Ta'lim markazi" class="rounded-2xl w-full">
+                        <div class="absolute -top-4 -right-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full p-4 shadow-lg animate-bounce">
+                            <i class="fas fa-award text-white text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Nima Uchun Bizni Tanlaysiz?
+                </span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Bizning ta'lim markazimiz zamonaviy yondashuvlar va yuqori sifatli ta'lim bilan ajralib turadi
+            </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% if services %}
+                {% for service in services %}
+                <div class="card-hover bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 text-center border-0 shadow-lg">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mb-4 shadow-lg">
+                        <i class="{{ service.icon }} text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">{{ service.title }}</h3>
+                    <p class="text-gray-600 leading-relaxed">{{ service.description }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Default services -->
+                <div class="card-hover bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 text-center border-0 shadow-lg">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-book text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Zamonaviy Kurslar</h3>
+                    <p class="text-gray-600 leading-relaxed">Eng so'nggi texnologiyalar va usullar asosida tuzilgan kurslar</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 text-center border-0 shadow-lg">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Professional O'qituvchilar</h3>
+                    <p class="text-gray-600 leading-relaxed">Tajribali va malakali o'qituvchilar jamoasi</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 text-center border-0 shadow-lg">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-award text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Sertifikatlar</h3>
+                    <p class="text-gray-600 leading-relaxed">Kursni muvaffaqiyatli tugatganlar uchun rasmiy sertifikatlar</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 text-center border-0 shadow-lg">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Qulay Joylashuv</h3>
+                    <p class="text-gray-600 leading-relaxed">Shaharning turli joylarida filiallarimiz mavjud</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Popular Courses -->
+{% if featured_courses %}
+<section class="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Mashhur Kurslar
+                </span>
+            </h2>
+            <p class="text-xl text-gray-600">Eng ko'p tanlanayotgan kurslarimiz bilan tanishing</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for course in featured_courses %}
+            <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border-0">
+                <div class="relative overflow-hidden">
+                    {% if course.image %}
+                        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                    {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-blue-200 to-purple-200 flex items-center justify-center">
+                            <i class="fas fa-book text-4xl text-blue-600"></i>
+                        </div>
+                    {% endif %}
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-blue-600">
+                        {{ course.price }} so'm
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">{{ course.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ course.description|truncatewords:15 }}</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-1">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="text-sm font-semibold">{{ course.rating }}</span>
+                        </div>
+                        <div class="text-sm text-gray-600">{{ course.students_count }} o'quvchi</div>
+                    </div>
+                    <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+                        Kursga Yozilish
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/10"></div>
+    <div class="container mx-auto px-4 relative">
+        <div class="text-center max-w-4xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Bugun O'qishni Boshlang!</h2>
+            <p class="text-xl mb-8 opacity-90">
+                Kelajagingizni o'zgartirish uchun birinchi qadamni tashlang. Bizning professional kurslarimiz sizga yangi
+                imkoniyatlar ochadi.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="px-8 py-4 text-lg bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Bepul Konsultatsiya
+                </button>
+                <a href="{% url 'main:courses' %}" class="px-8 py-4 text-lg border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    Barcha Kurslar
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

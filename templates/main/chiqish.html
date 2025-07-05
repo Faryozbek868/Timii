@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Chiqish - Ta'lim Markazi{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <div class="container">
+            <h1><i class="fas fa-door-open"></i> Xayr!</h1>
+            <p>Ta'lim Markazini tanlaganingiz uchun rahmat!</p>
+        </div>
+    </div>
+</section>
+
+<section class="cards-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-heart" style="color: #e74c3c;"></i>
+                </div>
+                <h2>Bizni Tanlaganingiz Uchun Rahmat!</h2>
+                <p style="font-size: 1.2rem; margin: 2rem 0;">
+                    Umid qilamizki, bizning ta'lim xizmatlarimiz sizga yoqdi. 
+                    Yana qaytib kelishingizni kutamiz!
+                </p>
+                
+                <div style="margin: 2rem 0;">
+                    <h3>Bizni unutmang:</h3>
+                    <div style="margin: 1rem 0;">
+                        <a href="tel:+998901234567" style="display: inline-block; margin: 0.5rem; padding: 0.75rem 1.5rem; background: #27ae60; color: white; border-radius: 25px; text-decoration: none;">
+                            <i class="fas fa-phone"></i> +998 90 123 45 67
+                        </a>
+                    </div>
+                    <div style="margin: 1rem 0;">
+                        <a href="https://t.me/talimmarkazi" style="display: inline-block; margin: 0.5rem; padding: 0.75rem 1.5rem; background: #0088cc; color: white; border-radius: 25px; text-decoration: none;">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </a>
+                        <a href="https://instagram.com/talimmarkazi" style="display: inline-block; margin: 0.5rem; padding: 0.75rem 1.5rem; background: #E4405F; color: white; border-radius: 25px; text-decoration: none;">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 3rem;">
+                    <a href="{% url 'main:home' %}" class="cta-button">
+                        <i class="fas fa-home"></i> Bosh Sahifaga Qaytish
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cards-section" style="background: rgba(255, 255, 255, 0.05);">
+    <div class="container">
+        <h2 style="text-align: center; color: white; font-size: 2rem; margin-bottom: 2rem;">
+            <i class="fas fa-star"></i> Bizning Afzalliklarimiz
+        </h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Sifatli Ta'lim</h3>
+                <p>Zamonaviy metodlar va professional yondashuv</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Tajribali O'qituvchilar</h3>
+                <p>Soha mutaxassislari va malakali pedagog</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3>Rasmiy Sertifikat</h3>
+                <p>Kurs yakunida rasmiy sertifikat beriladi</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>24/7 Yordam</h3>
+                <p>Har doim sizning xizmatingizdamiz</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
